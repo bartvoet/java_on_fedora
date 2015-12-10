@@ -351,26 +351,43 @@ Next step is to configure locally a password so that you can configure
 
 http://localhost:8080
 
-## Install Git and Maven
+## Install Maven
     
-    # dnf install git
+Next step is installing a web-application.  
+We will use maven for building this application.  
+Download for this the most recent maven release and untar it to the opt-folder.
 
+~~~
     $ wget http://mirrors.gigenet.com/apache/maven/maven-3/3.0.5/binaries/apache-maven-3.0.5-bin.tar.gz
     # tar -zxvf apache-maven-3.0.5-bin.tar.gz -C /opt/
+~~~
 
+Maven is to be placed in the path so we create a profile-script:
+
+~~~
     # vi /etc/profile.d/maven.sh
+~~~
 
+With the content
+
+~~~{.sh}
     export M2_HOME=/opt/apache-maven-3.3.9
     export M2=$M2_HOME/bin
     PATH=$M2:$PATH
-
+~~~
 
 ## Checkout and compile
 
+Once this is done we:
+
+* Use git in order to checkout a sample web-project
+* Compile it via maven (and the jdk we've set up earlier)
+* 
+
+~~~
     $ git clone https://github.com/heroku/java-sample.git
     $ cd java-sample
     $ mvn clean all
-
     
     [bart@localhost java-sample]$ maven clean package
     bash: maven: opdracht niet gevonden
@@ -381,51 +398,41 @@ http://localhost:8080
     [INFO] Building webappRunnerSample Maven Webapp 1.0-SNAPSHOT
     [INFO] ------------------------------------------------------------------------
     [INFO] 
-    [INFO] --- maven-clean-plugin:2.5:clean (default-clean) @ webappRunnerSample ---
+    [INFO] --- maven-clean-plugin:2.5:clean (default-clean) @ webappRunnerSample 
+
+...
+
     [INFO] Deleting /home/bart/java-sample/target
     [INFO] 
-    [INFO] --- maven-resources-plugin:2.6:resources (default-resources) @ webappRunnerSample ---
-    [WARNING] Using platform encoding (UTF-8 actually) to copy filtered resources, i.e. build is platform dependent!
-    [INFO] skip non existing resourceDirectory /home/bart/java-sample/src/main/resources
-    [INFO] 
-    [INFO] --- maven-compiler-plugin:3.1:compile (default-compile) @ webappRunnerSample ---
-    [INFO] No sources to compile
-    [INFO] 
-    [INFO] --- maven-resources-plugin:2.6:testResources (default-testResources) @ webappRunnerSample ---
-    [WARNING] Using platform encoding (UTF-8 actually) to copy filtered resources, i.e. build is platform dependent!
-    [INFO] skip non existing resourceDirectory /home/bart/java-sample/src/test/resources
-    [INFO] 
-    [INFO] --- maven-compiler-plugin:3.1:testCompile (default-testCompile) @ webappRunnerSample ---
-    [INFO] No sources to compile
-    [INFO] 
-    [INFO] --- maven-surefire-plugin:2.12.4:test (default-test) @ webappRunnerSample ---
-    [INFO] No tests to run.
-    [INFO] 
-    [INFO] --- maven-war-plugin:2.2:war (default-war) @ webappRunnerSample ---
-    [INFO] Packaging webapp
-    [INFO] Assembling webapp [webappRunnerSample] in [/home/bart/java-sample/target/webappRunnerSample]
-    [INFO] Processing war project
-    [INFO] Copying webapp resources [/home/bart/java-sample/src/main/webapp]
-    [INFO] Webapp assembled in [79 msecs]
-    [INFO] Building war: /home/bart/java-sample/target/webappRunnerSample.war
-    [INFO] WEB-INF/web.xml already added, skipping
-    [INFO] 
-    [INFO] --- maven-dependency-plugin:2.3:copy (default) @ webappRunnerSample ---
-    [INFO] Configured Artifact: com.github.jsimone:webapp-runner:7.0.22:jar
-    [INFO] Copying webapp-runner-7.0.22.jar to /home/bart/java-sample/target/dependency/webapp-runner.jar
-    [INFO] ------------------------------------------------------------------------
+    [INFO] --- maven-resources-plugin:2.6:resources (default-resources) @  ------------------------------------------------------------------------
     [INFO] BUILD SUCCESS
     [INFO] ------------------------------------------------------------------------
     [INFO] Total time: 6.034 s
     [INFO] Finished at: 2015-12-10T08:13:07+01:00
     [INFO] Final Memory: 10M/23M
     [INFO] ------------------------------------------------------------------------
+~~~
 
+Via the webconsole
+See [Tomcat Documentation](https://tomcat.apache.org/tomcat-7.0-doc/deployer-howto.html)
+
+~~~
+# webapps_dir=/var/lib/tomcat/webapps
+# cp webappRunnerSample.war $webapps_dir
+# systemctl restart tomcat
+~~~
+
+
+
+Testing can be done through the webbrowser and a simple curl:
+
+~~~
     curl http://localhost:8080/webappRunnerSample/
     <html>
     <body>
     <h2>Hello World!</h2>
     </body>
     </html>
+~~~
 
     
