@@ -64,7 +64,7 @@ Installing the Oracle SDK requires some manual steps:
 
 ~~~
     $ wget --no-cookies --no-check-certificate --header "Cookie: gpw_e24=http%3A%2F%2Fwww.oracle.com%2F;oraclelicense=accept-securebackup-cookie" "http://download.oracle.com/otn-pub/java/jdk/8u65-b17/jdk-8u65-linux-i586.rpm"
-    # rpm -Uvh jdk-8u65-linux-i586.rpm
+    # dnf local install jdk-8u65-linux-i586.rpm
     # ls -l /usr/java/jdk1.8.0_65
     totaal 25920
     drwxr-xr-x. 2 root root     4096  8 dec 19:07 bin
