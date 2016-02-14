@@ -191,10 +191,15 @@ Containing a simple hello-world, e.g. the following content
     }
 ~~~
 
-Compile and run:
+Compile the java-file: 
 
 ~~~
    $ javac HelloWorld.java
+~~~
+
+And run:
+
+~~~
    $ java HelloWorld
    Hello world
 ~~~
@@ -205,14 +210,14 @@ Create the following java-file:
 
 ~~~{.java} 
     public class HelloWorldExtended {
-            public static void main(String[] args) {
-                    Hello hello = new Hello();
-                    World world = new World();
-                    hello.saySomething();
-                    System.out.print();
-                    world.saySomething();
-                    System.out.println();
-            }
+        public static void main(String[] args) {
+                Hello hello = new Hello();
+                World world = new World();
+                hello.saySomething();
+                System.out.print();
+                world.saySomething();
+                System.out.println();
+        }
     }
 ~~~
 
@@ -246,9 +251,9 @@ Compiling this file will result in an error because of other depending classes n
 You create a separate folder hello and create a java-file "Hello.java"
 
 ~~~
-    mkdir hello
-    vi hello/Hello.java
-    javac hello/Hello.java
+    $ mkdir hello
+    $ vi hello/Hello.java
+    $ javac hello/Hello.java
 ~~~
 
 with e.g. content
@@ -264,18 +269,18 @@ with e.g. content
 and a seconde folder world
 
 ~~~
-    mkdir world
-    vi world/World.java
-    javac world/World.java
+    $ mkdir world
+    $ vi world/World.java
+    $ javac world/World.java
 ~~~
 
 with the content
 
 ~~~{.java} 
     public class World {
-            public void saySomething() {
-                    System.out.print("World");
-            }
+        public void saySomething() {
+                System.out.print("World");
+        }
     }
 ~~~
 
@@ -320,7 +325,7 @@ Now that you've installed java however the installation of eclipse without packa
 After that you can ...
 
 ~~~
-vi ./eclipse/eclipse.ini
+    $ vi ./eclipse/eclipse.ini
 ~~~
 
 lwhere you can configure the minimum and maximum heaps size
@@ -384,7 +389,6 @@ Once this is done we:
 
 * Use git in order to checkout a sample web-project
 * Compile it via maven (and the jdk we've set up earlier)
-* 
 
 ~~~
     $ git clone https://github.com/heroku/java-sample.git
@@ -419,9 +423,9 @@ Via the webconsole
 See [Tomcat Documentation](https://tomcat.apache.org/tomcat-7.0-doc/deployer-howto.html)
 
 ~~~
-# webapps_dir=/var/lib/tomcat/webapps
-# cp webappRunnerSample.war $webapps_dir
-# systemctl restart tomcat
+    # webapps_dir=/var/lib/tomcat/webapps
+    # cp webappRunnerSample.war $webapps_dir
+    # systemctl restart tomcat
 ~~~
 
 
@@ -429,7 +433,7 @@ See [Tomcat Documentation](https://tomcat.apache.org/tomcat-7.0-doc/deployer-how
 Testing can be done through the webbrowser and a simple curl:
 
 ~~~
-    curl http://localhost:8080/webappRunnerSample/
+    $ curl http://localhost:8080/webappRunnerSample/
     <html>
     <body>
     <h2>Hello World!</h2>
