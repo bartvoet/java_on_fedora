@@ -191,10 +191,12 @@ Containing a simple hello-world, e.g. the following content
     }
 ~~~
 
-Compile it:
+Compile and run:
 
 ~~~
-    javac HelloWorld.java
+   $ javac HelloWorld.java
+   $ java HelloWorld
+   Hello world
 ~~~
  
 ### Configuring classpath (jar-files)
